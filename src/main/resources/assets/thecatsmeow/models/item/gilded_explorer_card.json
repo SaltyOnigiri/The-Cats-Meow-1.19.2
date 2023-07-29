@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "thecatsmeow:item/gilded_explorer_card"
+  }
+}

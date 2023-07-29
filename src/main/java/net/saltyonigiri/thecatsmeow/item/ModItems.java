@@ -6,6 +6,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.saltyonigiri.thecatsmeow.TheCatsMeow;
+import net.saltyonigiri.thecatsmeow.item.custom.CopperJourneymanCardItem;
 
 public class ModItems {
     // Creative Tab
@@ -14,7 +15,7 @@ public class ModItems {
 
     // Adventurers Card Set
     public static final Item COPPER_JOURNEYMAN_CARD = registerItem("copper_journeyman_card",
-            new Item(new FabricItemSettings().group(ModItemGroup.CATSMEOW)));
+            new CopperJourneymanCardItem(new FabricItemSettings().group(ModItemGroup.CATSMEOW)));
     public static final Item GILDED_EXPLORER_CARD = registerItem("gilded_explorer_card",
             new Item(new FabricItemSettings().group(ModItemGroup.CATSMEOW)));
     public static final Item IRONHEART_WANDERER_CARD = registerItem("ironheart_wanderer_card",

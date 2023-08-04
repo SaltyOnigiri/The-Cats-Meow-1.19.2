@@ -15,6 +15,11 @@ repositories {
 		name = "CottonMC"
 		url = "https://server.bbkr.space/artifactory/libs-release"
 	}
+
+	maven {
+		name = 'GeckoLib'
+		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+	}
 }
 
 dependencies {
@@ -33,6 +38,8 @@ dependencies {
 	// LibGui Dependency
 	modImplementation include("io.github.cottonmc:LibGui:6.4.0+1.19")
 
+	// Geckolib Dependency
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.40'
 }
 
 processResources {

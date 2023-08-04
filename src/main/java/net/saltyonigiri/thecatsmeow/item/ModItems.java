@@ -25,6 +25,9 @@ public class ModItems {
     public static final Item NETHERITE_VANGUARD_CARD = registerItem("netherite_vanguard_card",
             new Item(new FabricItemSettings().group(ModItemGroup.CATSMEOW)));
 
+    // Food Set
+    // public static final Item(new FabricItemSettings().group())
+
     // Method to register a custom item in the game's item registry.
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(TheCatsMeow.MOD_ID, name), item);

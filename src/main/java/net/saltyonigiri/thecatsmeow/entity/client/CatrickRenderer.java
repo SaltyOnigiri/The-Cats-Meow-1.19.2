@@ -18,7 +18,7 @@ public class CatrickRenderer extends GeoEntityRenderer<CatrickEntity> {
 
     @Override
     public Identifier getTextureResource(CatrickEntity instance) {
-        return new Identifier(TheCatsMeow.MOD_ID,"textures/entity/kittycat.png");
+        return new Identifier(TheCatsMeow.MOD_ID,"textures/entity/catrick.png");
     }
 
     @Override

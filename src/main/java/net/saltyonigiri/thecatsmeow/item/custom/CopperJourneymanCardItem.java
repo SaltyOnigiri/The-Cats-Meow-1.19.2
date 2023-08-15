@@ -8,17 +8,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import net.saltyonigiri.thecatsmeow.gui.CardGui;
-import net.saltyonigiri.thecatsmeow.gui.CardScreen;
+import net.saltyonigiri.thecatsmeow.gui.CopperCardGui;
+import net.saltyonigiri.thecatsmeow.gui.CopperCardScreen;
 
-public class CopperJourneymanCardItem extends Item  {
+public class CopperJourneymanCardItem extends Item {
     public CopperJourneymanCardItem(Settings settings) {
         super(settings);
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        MinecraftClient.getInstance().setScreen(new CardScreen(new CardGui()));
+        if (world.isClient) { // Ensure this code runs only on the client side
+            MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new CopperCardScreen(new CopperCardGui())));
+        }
+
         return super.use(world, user, hand);
     }
 }

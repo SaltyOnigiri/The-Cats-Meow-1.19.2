@@ -59,7 +59,7 @@ public class CatrickEntity extends MerchantEntity implements IAnimatable {
     // Method to set the attributes for the entity
     public static DefaultAttributeContainer.Builder setAttributes() {
         return MerchantEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.00)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.00) // Nuuu don't kill Catrick
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0f); // Catrick is a receptionist and doesn't move
     }
 
@@ -77,7 +77,7 @@ public class CatrickEntity extends MerchantEntity implements IAnimatable {
         if (detectsPlayer()) {
             long currentTime = System.currentTimeMillis();
             if (!playerEnteredRadius || currentTime - lastPlayerEnteredTime > RESET_DELAY * 1000) {
-                // Set animation to play once and then loop
+                // Set first animation to play once and then a second animation to loop
                 controller.setAnimation(new AnimationBuilder().addAnimation("animation.kittycat.idle", ILoopType.EDefaultLoopTypes.PLAY_ONCE).addAnimation("animation.kittycat.idleb", ILoopType.EDefaultLoopTypes.LOOP));
                 playerEnteredRadius = true;
                 lastPlayerEnteredTime = currentTime;

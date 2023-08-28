@@ -3,6 +3,7 @@ package net.saltyonigiri.thecatsmeow;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.util.Identifier;
 import net.saltyonigiri.thecatsmeow.entity.ModEntities;
 import net.saltyonigiri.thecatsmeow.entity.custom.CatrickEntity;
 import net.saltyonigiri.thecatsmeow.item.ModItems;

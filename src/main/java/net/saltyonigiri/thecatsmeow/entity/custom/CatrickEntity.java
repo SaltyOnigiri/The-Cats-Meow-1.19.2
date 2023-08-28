@@ -1,5 +1,7 @@
 package net.saltyonigiri.thecatsmeow.entity.custom;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -7,10 +9,16 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.world.World;
+import net.saltyonigiri.thecatsmeow.gui.CatrickGui;
+import net.saltyonigiri.thecatsmeow.gui.CatrickScreen;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -56,11 +64,21 @@ public class CatrickEntity extends MerchantEntity implements IAnimatable {
         return null;
     }
 
+    //Open Gui Screen On click
+    @Override
+    public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
+        if (hand == Hand.MAIN_HAND && player instanceof ClientPlayerEntity) {
+            MinecraftClient.getInstance().setScreen(new CatrickScreen(new CatrickGui()));
+            return ActionResult.SUCCESS;
+        }
+        return super.interactAt(player, hitPos, hand);
+    }
+
     // Method to set the attributes for the entity
     public static DefaultAttributeContainer.Builder setAttributes() {
         return MerchantEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.00) // Nuuu don't kill Catrick
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0f); // Catrick is a receptionist and doesn't move
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0f); // Catrick is a receptionist and doesn't move much
     }
 
     // Method to initialize entity's goals

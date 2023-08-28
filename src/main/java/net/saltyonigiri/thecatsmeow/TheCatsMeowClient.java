@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.saltyonigiri.thecatsmeow.entity.ModEntities;
 import net.saltyonigiri.thecatsmeow.entity.client.CatrickRenderer;
 
+
 public class TheCatsMeowClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {

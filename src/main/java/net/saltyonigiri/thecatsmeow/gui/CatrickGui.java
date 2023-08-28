@@ -7,14 +7,14 @@ import net.minecraft.util.Identifier;
 
 
 
-public class CopperCardGui extends LightweightGuiDescription {
-    public CopperCardGui() {
+public class CatrickGui extends LightweightGuiDescription {
+    public CatrickGui() {
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
         root.setSize(300, 200);
 
         // Load the background image
-        Identifier backgroundImageIdentifier = new Identifier("thecatsmeow:textures/gui/13.png");
+        Identifier backgroundImageIdentifier = new Identifier("thecatsmeow:textures/gui/copper_bck.png");
         WSprite backgroundImage = new WSprite(backgroundImageIdentifier);
         root.add(backgroundImage, 0, 0, 17, 12); // Adjust the grid position and span as needed
 

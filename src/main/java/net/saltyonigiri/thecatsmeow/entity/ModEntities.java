@@ -13,5 +13,5 @@ public class ModEntities {
     public static final EntityType<CatrickEntity> CATRICK = Registry.register(
             Registry. ENTITY_TYPE, new Identifier(TheCatsMeow.MOD_ID,"catrick"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CatrickEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.5f,1.5f)).build());
+                    .dimensions(EntityDimensions.fixed(0.9f,1.3f)).build());
 }

@@ -2,11 +2,11 @@ package net.saltyonigiri.thecatsmeow.entity.custom;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,7 +38,7 @@ public class CatrickEntity extends MerchantEntity implements IAnimatable {
 
     // Define constants for animation reset delay and player detection radius
     private final double RESET_DELAY = 5.0; // Delay in seconds before resetting animation
-    private static final double DETECTION_RADIUS = 2.0; // Sets the radius a player must enter to be seen by Catrick
+    private static final double DETECTION_RADIUS = 6.0; // Sets the radius a player must enter to be seen by Catrick
 
     // Track whether a player entered the radius and last time a player entered
     private boolean playerEnteredRadius = false; // Track whether the player entered the radius
@@ -78,13 +78,24 @@ public class CatrickEntity extends MerchantEntity implements IAnimatable {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return MerchantEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.00) // Nuuu don't kill Catrick
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0f); // Catrick is a receptionist and doesn't move much
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.05f); // Catrick is a receptionist and doesn't move much
+    }
+
+    @Override
+    public float getEyeHeight(EntityPose pose) {
+        PlayerEntity player = world.getClosestPlayer(this, 7.0D);
+        if (player != null) {
+            return (float) (player.getEyeY() - getY()); // Set eye height to match player eye height
+        } else {
+            return super.getEyeHeight(pose);
+        }
     }
 
     // Method to initialize entity's goals
     @Override
     protected void initGoals() {
-        this.goalSelector.add(1, new LookAtEntityGoal(this, MobEntity.class, 8.0f));
+        super.initGoals();
+        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 7.0F));
     }
 
     // Animation predicate method that controls the entity's animations

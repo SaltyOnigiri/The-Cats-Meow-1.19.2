@@ -1,13 +1,11 @@
 package net.saltyonigiri.thecatsmeow.gui;
 
-import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
+import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
-import io.github.cottonmc.cotton.gui.widget.data.Insets;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
-
 
 public class CatrickGui extends LightweightGuiDescription {
     public CatrickGui() {
@@ -19,10 +17,6 @@ public class CatrickGui extends LightweightGuiDescription {
         Identifier backgroundImageIdentifier = new Identifier("thecatsmeow:textures/gui/catrick_bck.png");
         WSprite backgroundImage = new WSprite(backgroundImageIdentifier);
         root.add(backgroundImage, 0, 0, 17, 12); // Adjust the grid position and span as needed
-
-        // TextBox Option
-        // WSprite textbox = new WSprite(new Identifier("thecatsmeow:textures/gui/1.png"));
-        // root.add(textbox, 3, 0, 11, 8);
 
         // Catrick Icon
         WSprite icon = new WSprite(new Identifier("thecatsmeow:textures/gui/catrick.png"));
@@ -40,8 +34,11 @@ public class CatrickGui extends LightweightGuiDescription {
 
         WButton quest_button = new WButton(Text.literal("Browse Quests"));
         quest_button.setOnClick(() -> {
-            // This code runs on the client when you click the button.
-            System.out.println("Quest Button Works!");
+            // Create an instance of the QuestGui
+            QuestGui questGui = new QuestGui(this); // Pass the reference to CatrickGui
+
+            // Set the current screen to the QuestGui
+            MinecraftClient.getInstance().setScreen(new CottonClientScreen(questGui));
         });
 
         // Widget, X, Y, Width, Height

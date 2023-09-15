@@ -17,7 +17,6 @@ public class QuestGui extends LightweightGuiDescription {
             "Sleeping With The Fishies",
             "Mysterious Yarn Balls",
             "Sweet Treats",
-            "Kittens in a Blanket"
             // Add more quest names here
     };
 
@@ -25,7 +24,7 @@ public class QuestGui extends LightweightGuiDescription {
         // Create the GUI elements for the QuestGui here
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
-        root.setSize(300, 200);
+        root.setSize(200, 200);
 
         WLabel titleLabel = new WLabel(Text.of("Quest System"));
         root.add(titleLabel, 2, 1, 6, 1);
@@ -34,6 +33,7 @@ public class QuestGui extends LightweightGuiDescription {
         for (int i = 0; i < questNames.length; i++) {
             int questIndex = i;
             String questName = questNames[i];
+
 
             WButton questButton = new WButton(Text.of(questName));
             questButton.setOnClick(() -> {
@@ -55,4 +55,6 @@ public class QuestGui extends LightweightGuiDescription {
     public static String[] getQuestNames() {
         return questNames;
     }
+
+
 }

@@ -23,14 +23,9 @@ public class CatrickGui extends LightweightGuiDescription {
         root.add(icon, 9, 5, 7, 7);
 
         // Label with card information
-        WLabel label = new WLabel(Text.literal("Meow there, adventurer! Welcome to The Cat's "));
-        root.add(label, 2, 2, 4, 1);
-        WLabel label1 = new WLabel(Text.literal("Meow Guild Hall, the purr-fect hub for all your "));
-        root.add(label1, 2, 3, 4, 1);
-        WLabel label2 = new WLabel(Text.literal("feline-fueled adventures. I'm Catrick, the "));
-        root.add(label2, 2, 4, 4, 1);
-        WLabel label3 = new WLabel(Text.literal( "receptionist here. How can I help you today?"));
-        root.add(label3, 2, 5, 4, 1);
+        // Create a WText widget to display the quest description with text wrapping
+        WText descriptionText = new WText(Text.of("Meow there, adventurer! Welcome to The Cat's Meow Guild Hall, the purr-fect hub for all your feline-fueled adventures. I'm Catrick, the receptionist here. How can I help you today?"));
+        root.add(descriptionText, 3, 2, 12, 1);
 
         WButton quest_button = new WButton(Text.literal("Browse Quests"));
         quest_button.setOnClick(() -> {

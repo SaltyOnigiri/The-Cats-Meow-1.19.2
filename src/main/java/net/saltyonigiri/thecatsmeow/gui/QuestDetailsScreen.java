@@ -10,12 +10,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
 public class QuestDetailsScreen extends CottonClientScreen {
-
     public QuestDetailsScreen(CatrickGui parentGui, String questName) {
         super(new QuestDetailsGui(parentGui, questName));
     }
 
     private static class QuestDetailsGui extends LightweightGuiDescription {
+        private boolean questAccepted = false; // Track whether the quest is accepted
+
         public QuestDetailsGui(CatrickGui parentGui, String questName) {
             WGridPanel root = new WGridPanel();
             setRootPanel(root);
@@ -31,8 +32,7 @@ public class QuestDetailsScreen extends CottonClientScreen {
                     "Cats are known for their fascination with birds. Collect 20 feathers to satisfy the cat Pawthfinders' curiosity about the feathered creatures of the world.",
                     "Cats love fish! Gather 15 fish from the nearby rivers and ponds to treat the cat adventurers to a delicious meal.",
                     "The Pawthfinders have heard rumors of special yarn balls hidden in caves. Retrieve 8 strings from spider drops to craft yarn balls for their amusement.",
-                    "The Pawthfinders are craving sweet treats! Gather 20 bottles of honey and 5 buckets of milk to make delicious honey and milk desserts for them.",
-                    "Collect wool from different colored sheep to create cozy blankets for the adorable kittens. To make the blankets even more delightful, you may need to dye the wool in a variety of vibrant colors. These blankets will not only keep the kittens warm but also fill their nights with dreams of colorful adventures."
+                    "The Pawthfinders are craving sweet treats! Gather 20 bottles of honey and 5 buckets of milk to make delicious honey and milk desserts for them."
             };
 
             // Access questNames using the getter method
@@ -54,13 +54,27 @@ public class QuestDetailsScreen extends CottonClientScreen {
 
                 // Create a WText widget to display the quest description with text wrapping
                 WText descriptionText = new WText(Text.of(questDescriptions[questIndex]));
-                root.add(descriptionText, 1, 2, 8, 1);
+                root.add(descriptionText, 1, 2, 12, 1);
             }
 
-            // Add a "Back" button to return to the QuestGui
+            if (!questAccepted) {
+                // Add an "Accept" button to accept the quest
+                WButton acceptButton = new WButton(Text.of("Accept"));
+                acceptButton.setOnClick(() -> {
+                    // Mark the quest as accepted
+                    questAccepted = true;
+                    // Disable the "Accept" button
+                    acceptButton.setEnabled(false);
+                    // Close the GUI
+                    MinecraftClient.getInstance().setScreen(new CottonClientScreen(parentGui));
+                });
+                root.add(acceptButton, 9, 9, 7, 1);
+            }
+
+        // Add a "Back" button to return to the QuestGui
             WButton backButton = new WButton(Text.of("Back"));
-            backButton.setOnClick(() -> MinecraftClient.getInstance().setScreen(new CottonClientScreen(parentGui)));
-            root.add(backButton, 1, 8, 7, 1);
+            backButton.setOnClick(() -> MinecraftClient.getInstance().setScreen(new CottonClientScreen(new QuestGui(parentGui))));
+            root.add(backButton, 1, 9, 7, 1);
         }
     }
 }
